@@ -6,8 +6,9 @@
 
   tasks:
   - name: Download WAR to server
-    command: wget http://example.com/file.war -O {{ warRemotePath }}/{{ warName }}
-  
+    # command: wget http://example.com/file.war -O {{ warRemotePath }}/{{ warName }}
+    get_url: url=http://example.com/file.war dest={{ warRemotePath }}/{{ warName }}
+
   - name: Unzip WAR file
     unarchive: src={{ warRemotePath }}/{{ warName }} dest=/var/lib/tomcat7/webapps/ROOT/ copy=no mode=0755 owner=tomcat7 group=tomcat7
     notify:
